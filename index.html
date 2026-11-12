@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength Analyzer & Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Password Strength Analyzer & Generator</h1>
+      <button id="theme-toggle" class="secondary" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        🌙 Dark mode
+      </button>
+    </header>
+
+    <main class="container">
+      <section class="card" aria-labelledby="analyzer-title">
+        <h2 id="analyzer-title">Password Strength Analyzer</h2>
+        <label for="password-input">Type a password</label>
+        <input
+          id="password-input"
+          type="password"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="strength-text crack-time tips"
+        />
+
+        <div class="meter" aria-hidden="true">
+          <div id="strength-bar" class="meter-fill"></div>
+        </div>
+        <p id="strength-text" class="status" aria-live="polite">Strength: Very Weak</p>
+        <p id="crack-time" class="hint" aria-live="polite">Estimated crack time: instant</p>
+        <ul id="tips" class="tips" aria-live="polite"></ul>
+      </section>
+
+      <section class="card" aria-labelledby="generator-title">
+        <h2 id="generator-title">Strong Password Generator</h2>
+
+        <div class="generated-row">
+          <label for="generated-password" class="sr-only">Generated password</label>
+          <input id="generated-password" type="text" readonly aria-live="polite" />
+          <button id="copy-btn" type="button" class="secondary">Copy</button>
+        </div>
+
+        <label for="length-range">Length: <span id="length-value">16</span></label>
+        <input id="length-range" type="range" min="8" max="64" value="16" />
+
+        <fieldset>
+          <legend>Include characters</legend>
+          <label><input type="checkbox" id="opt-upper" checked /> Uppercase (A-Z)</label>
+          <label><input type="checkbox" id="opt-lower" checked /> Lowercase (a-z)</label>
+          <label><input type="checkbox" id="opt-number" checked /> Numbers (0-9)</label>
+          <label><input type="checkbox" id="opt-symbol" checked /> Symbols (!@#...)</label>
+        </fieldset>
+
+        <div class="actions">
+          <button id="generate-btn" type="button">Generate Password</button>
+        </div>
+      </section>
+    </main>
+
+    <p id="toast" class="toast" role="status" aria-live="polite"></p>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
